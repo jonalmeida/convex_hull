@@ -30,12 +30,12 @@ impl Sub for Point {
 fn test_add() {
     let p_one = Point { x: 1, y: 1 };
     let p_two = Point { x: 2, y: 2 };
-    assert_eq!(Point{ x:3, y:3 }, p_one + p_two);
+    assert_eq!(Point { x: 3, y: 3 }, p_one + p_two);
 }
 
 #[test]
 fn test_subtract() {
     let p_one = Point { x: 4, y: 5 };
     let p_two = Point { x: 12, y: 2 };
-    assert_eq!(Point{ x: 8, y: -3}, p_one - p_two);
+    assert_eq!(Point { x: 8, y: -3 }, p_one - p_two);
 }
