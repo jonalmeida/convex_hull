@@ -26,6 +26,12 @@ impl Sub for Point {
     }
 }
 
+impl Point {
+    fn distance(self, point: &Point) -> f32 {
+        (((point.y - self.y).pow(2) + (point.x - self.x).pow(2)) as f32).sqrt()
+    }
+}
+
 #[test]
 fn test_add() {
     let p_one = Point { x: 1, y: 1 };
@@ -38,4 +44,11 @@ fn test_subtract() {
     let p_one = Point { x: 4, y: 5 };
     let p_two = Point { x: 12, y: 2 };
     assert_eq!(Point { x: 8, y: -3 }, p_one - p_two);
+}
+
+#[test]
+fn test_distance() {
+    let p_one = Point { x: 1, y: 1 };
+    let p_two = Point { x: 12, y: 2 };
+    assert_eq!(11.045361f32, p_one.distance(&p_two));
 }
