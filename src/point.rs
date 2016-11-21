@@ -52,3 +52,10 @@ fn test_distance() {
     let p_two = Point { x: 12, y: 2 };
     assert_eq!(11.045361f32, p_one.distance(&p_two));
 }
+
+#[test]
+fn test_distance() {
+    let p_one = Point { x: 1, y: 1 };
+    let p_two = Point { x: 12, y: 2 };
+    assert_eq!(11.045361f32, p_one.distance(&p_two));
+}
