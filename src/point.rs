@@ -1,7 +1,7 @@
 use std::ops::{Add, Sub};
 
 #[derive(Debug, PartialEq)]
-struct Point {
+pub struct Point {
     x: i32,
     y: i32,
 }
@@ -27,13 +27,23 @@ impl Sub for Point {
 }
 
 impl Point {
-    fn distance(&self, point: &Point) -> f32 {
+    pub fn new(_x: i32, _y: i32) -> Point {
+        Point { x: _x, y: _y}
+    }
+
+    pub fn distance(&self, point: &Point) -> f32 {
         (((point.y - self.y).pow(2) + (point.x - self.x).pow(2)) as f32).sqrt()
     }
 
-    fn gradient(&self, point: &Point) -> f32 {
+    pub fn gradient(&self, point: &Point) -> f32 {
         ((point.x - self.x) / (point.y - self.y)) as f32
     }
+}
+
+#[test]
+fn test_new() {
+    let point = Point::new(1, 1);
+    assert_eq!(Point {x: 1, y: 1}, point);
 }
 
 #[test]
@@ -63,3 +73,4 @@ fn test_distance() {
     let p_two = Point { x: 12, y: 2 };
     assert_eq!(11.045361f32, p_one.distance(&p_two));
 }
+
