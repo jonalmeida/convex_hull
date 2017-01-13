@@ -27,8 +27,12 @@ impl Sub for Point {
 }
 
 impl Point {
-    fn distance(self, point: &Point) -> f32 {
+    fn distance(&self, point: &Point) -> f32 {
         (((point.y - self.y).pow(2) + (point.x - self.x).pow(2)) as f32).sqrt()
+    }
+
+    fn gradient(&self, point: &Point) -> f32 {
+        ((point.x - self.x) / (point.y - self.y)) as f32
     }
 }
 
