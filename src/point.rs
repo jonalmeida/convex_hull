@@ -1,6 +1,6 @@
 use std::ops::{Add, Sub};
 
-#[derive(Debug, PartialEq)]
+#[derive(Debug, PartialEq, Clone, Copy)]
 pub struct Point {
     x: i32,
     y: i32,
@@ -74,3 +74,9 @@ fn test_distance() {
     assert_eq!(11.045361f32, p_one.distance(&p_two));
 }
 
+#[test]
+fn test_distance_between_same_point() {
+    let p_one = Point { x: 1, y: 1 };
+    let p_two = Point { x: 1, y: 1 };
+    assert_eq!(0f32, p_one.distance(&p_two));
+}
