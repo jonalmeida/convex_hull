@@ -1,6 +1,7 @@
 use std::ops::{Add, Sub};
+use std::cmp::Ordering;
 
-#[derive(Debug, PartialEq, Clone, Copy)]
+#[derive(Debug, PartialEq, Clone, Copy, Eq, Ord, PartialOrd)]
 pub struct Point {
     x: i32,
     y: i32,
@@ -27,14 +28,17 @@ impl Sub for Point {
 }
 
 impl Point {
+    #[allow(dead_code)]
     pub fn new(_x: i32, _y: i32) -> Point {
         Point { x: _x, y: _y}
     }
 
+    #[allow(dead_code)]
     pub fn distance(&self, point: &Point) -> f32 {
         (((point.y - self.y).pow(2) + (point.x - self.x).pow(2)) as f32).sqrt()
     }
 
+    #[allow(dead_code)]
     pub fn gradient(&self, point: &Point) -> f32 {
         ((point.x - self.x) / (point.y - self.y)) as f32
     }

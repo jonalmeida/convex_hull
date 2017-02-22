@@ -1,5 +1,6 @@
 use ::point::Point;
 
+/*
 fn furthest_points(cloud: &Vec<Point>) -> (Point, Point) {
     let size = cloud.iter().count();
     let mut distance = 0f32;
@@ -18,4 +19,18 @@ fn furthest_points(cloud: &Vec<Point>) -> (Point, Point) {
         }
     }
     (one, two)
+}
+*/
+
+fn furthest_points(cloud: &mut Vec<Point>) -> (Point, Point) {
+    cloud.sort();
+    cloud.dedup();
+    for p in cloud.iter().enumerate().flat_map(|(i, a)| cloud[i+1..].iter().map(move |b| (a, b))) {
+        println!("{:?}", p);
+    }
+    (Point::new(0,0), Point::new(0,0))
+}
+
+#[test]
+fn test_furthest_points() {
 }
