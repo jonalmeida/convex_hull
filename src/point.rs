@@ -28,7 +28,7 @@ impl Sub for Point {
 
 impl Point {
     pub fn new(_x: i32, _y: i32) -> Point {
-        Point { x: _x, y: _y}
+        Point { x: _x, y: _y }
     }
 
     pub fn distance(&self, point: &Point) -> f32 {
@@ -43,7 +43,7 @@ impl Point {
 #[test]
 fn test_new() {
     let point = Point::new(1, 1);
-    assert_eq!(Point {x: 1, y: 1}, point);
+    assert_eq!(Point { x: 1, y: 1 }, point);
 }
 
 #[test]

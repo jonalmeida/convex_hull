@@ -3,7 +3,7 @@ use ::point::Point;
 struct Line {
     first: Point,
     second: Point,
-    gradient: f32
+    gradient: f32,
 }
 
 impl Line {
