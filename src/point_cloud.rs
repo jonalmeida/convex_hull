@@ -1,36 +1,36 @@
 use ::point::Point;
 
-/*
-fn furthest_points(cloud: &Vec<Point>) -> (Point, Point) {
-    let size = cloud.iter().count();
-    let mut distance = 0f32;
-    let mut one = Point::new(0, 0);
-    let mut two = Point::new(0, 0);
-    for x in 0..size {
-        for y in 0..size {
-            let first  = cloud.iter().nth(x).unwrap();
-            let second = cloud.iter().nth(y).unwrap();
-            let compare = first.distance(&second);
-            if distance > compare {
-                one = first.clone();
-                two = second.clone();
-                distance = compare;
-            }
+fn furthest_points(cloud: &Vec<Point>, sorted: bool) -> (Point, Point) {
+    // TODO: Write more tests: if vec is empty, if already sorted, edge cases, vec of only 1 item
+    if cloud.len() < 2 {
+        panic!("There are less that two points to compare.");
+    }
+    let mut max_distance = 0_f32;
+    let mut max_points: (Point, Point) = (Point::new(-1, -1), Point::new(-1, -1));
+    let mut sorted_cloud = cloud.clone();
+    if !sorted {
+        sorted_cloud.sort();
+    }
+    sorted_cloud.dedup();
+    for p in sorted_cloud.iter().enumerate().flat_map(|(i, a)| sorted_cloud[i+1..].iter().map(move |b| (a, b))) {
+        let dist = p.0.distance(&p.1);
+        if max_distance < dist {
+            max_distance = dist;
+            max_points = (p.0.clone(), p.1.clone());
+            //println!("possible: {:?}, {:?}", p, dist);
         }
     }
-    (one, two)
-}
-*/
-
-fn furthest_points(cloud: &mut Vec<Point>) -> (Point, Point) {
-    cloud.sort();
-    cloud.dedup();
-    for p in cloud.iter().enumerate().flat_map(|(i, a)| cloud[i+1..].iter().map(move |b| (a, b))) {
-        println!("{:?}", p);
-    }
-    (Point::new(0,0), Point::new(0,0))
+    //println!("Max dist: {}, pair: {:?}", max_distance, max_points);
+    max_points
 }
 
 #[test]
 fn test_furthest_points() {
+    let vec = vec![Point::new(624, 176), Point::new(476, 2232), Point::new(912, 218),
+        Point::new(708, 2385), Point::new(337, 779), Point::new(134, 358),
+        Point::new(96, 1241), Point::new(1442, 1141), Point::new(706, 368),
+        Point::new(1037, 781), Point::new(2421, 1708), Point::new(1945, 2149)];
+    let (first, second) = furthest_points(&vec, false);
+    assert_eq!(first, Point::new(134, 358));
+    assert_eq!(second, Point::new(2421, 1708));
 }
